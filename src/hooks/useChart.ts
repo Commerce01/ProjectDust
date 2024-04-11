@@ -17,129 +17,124 @@ type ChartStoreAction = {
   setBuildingSix: (mode: "hours" | "days" | "month" | "year") => void;
 };
 
-function getRandomInt(min: number, max: number) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min;
-}
+const monthsThai = [
+  "มกราคม", // January
+  "กุมภาพันธ์", // February
+  "มีนาคม", // March
+  "เมษายน", // April
+  "พฤษภาคม", // May
+  "มิถุนายน", // June
+  "กรกฎาคม", // July
+  "สิงหาคม", // August
+  "กันยายน", // September
+  "ตุลาคม", // October
+  "พฤศจิกายน", // November
+  "ธันวาคม", // December
+];
 
-async function handleMode(mode: "hours" | "days" | "month" | "year") {
-  switch (mode) {
-    case "hours":
-      let hour = [];
-      const res = await fetch("http://localhost:8080/api/minute-level");
-      const data = await res.json();
-
-      hour = data.map((item: any) => {
-        return {
-          name: item.minute,
-          pm25: item.pm25Level,
-          co2: item.co2Level,
-        };
-      });
-
-      return hour;
-    case "days":
-      let day = [];
-      for (let i = 0; i < 24; i++) {
-        day.push({
-          name: (i + 1) % 3 === 0 ? `${i + 1}:00 น` : "",
-          pm25: getRandomInt(1, 300),
-          co2: getRandomInt(1, 2000),
-        });
-      }
-      return day;
-
-    case "month":
-      let month = [];
-      for (let i = 0; i < 30; i++) {
-        month.push({
-          name: (i + 1) % 5 === 0 ? `${i + 1} วัน` : "",
-          pm25: getRandomInt(1, 300),
-          co2: getRandomInt(1, 2000),
-        });
-      }
-      return month;
-    case "year":
-      let year = [];
-      for (let i = 0; i < 12; i++) {
-        year.push({
-          name: `${i + 1} เดือน`,
-          pm25: getRandomInt(1, 300),
-          co2: getRandomInt(1, 2000),
-        });
-      }
-      return year;
-    default:
-      return hour;
+async function fetchData(url: string) {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch data from ${url}`);
   }
+  return await response.json();
 }
 
-// const hour = handleMode("hours");
+function processHourlyData(data: any[]) {
+  return data.map((item) => ({
+    name: item.minute,
+    pm25: item.pm25Level,
+    co2: item.co2Level,
+  }));
+}
+
+function processDailyData(data: any) {
+  const dailyData = data.pm25Level.map((item: any, index: number) => ({
+    name: index * 3 + ":00",
+    pm25: item,
+    co2: data.co2Level[index],
+  }));
+
+  return dailyData;
+}
+
+function processMonthlyData(data: any) {
+  const monthlyData = data.map((item: any) => ({
+    name: new Date(item.timestamp).toLocaleDateString("th", {
+      month: "short",
+      day: "numeric",
+    }),
+    pm25: item.avgpm25Level,
+    co2: item.avgco2Level,
+  }));
+
+  return monthlyData;
+}
+
+function processYearlyData(data: any) {
+  const yearlyData = data.map((item: any) => ({
+    name: monthsThai[item.month - 1],
+    pm25: item.pm25Average,
+    co2: item.co2Average,
+  }));
+
+  return yearlyData;
+}
 
 const useChart = create<ChartStoreAction>((set, get) => ({
-  buildFive: [{ name: "", pm25: 0, co2: 0 }],
-  setBuildingFive: async (mode: "hours" | "days" | "month" | "year") => {
-    if (mode === "hours") {
-      const res = await fetch("http://localhost:8080/api/minute-level");
-      const data = await res.json();
-      const arrObj: Data[] = [
-        {
-          name: data.minute,
-          pm25: data.pm25Level,
-          co2: data.co2Level,
-        },
-      ];
-      set((state) => ({ buildFive: arrObj }));
-    }
-
-    if (mode === "days") {
-      let day: Data[] = [];
-      for (let i = 0; i < 24; i++) {
-        day.push({
-          name: (i + 1) % 3 === 0 ? `${i + 1}:00 น` : "",
-          pm25: getRandomInt(1, 300),
-          co2: getRandomInt(1, 2000),
-        });
-      }
-      set((state) => ({ buildFive: day }));
-    }
-
-    if (mode === "month") {
-      let month: Data[] = [];
-      for (let i = 0; i < 30; i++) {
-        month.push({
-          name: (i + 1) % 5 === 0 ? `${i + 1} วัน` : "",
-          pm25: getRandomInt(1, 300),
-          co2: getRandomInt(1, 2000),
-        });
-      }
-      set((state) => ({ buildFive: month }));
-    }
-
-    if (mode === "year") {
-      let year: Data[] = [];
-      for (let i = 0; i < 12; i++) {
-        year.push({
-          name: `${i + 1} เดือน`,
-          pm25: getRandomInt(1, 300),
-          co2: getRandomInt(1, 2000),
-        });
-      }
-      set((state) => ({ buildFive: year }));
-    }
-  },
-  buildSix: [{ name: "", pm25: 0, co2: 0 }],
-  setBuildingSix: async (mode: "hours" | "days" | "month" | "year") => {
-    const data = await handleMode(mode);
-    set((state) => ({ buildSix: data }));
-  },
+  buildFive: [],
   buildingFiveMode: "hours",
   setBuildingFiveMode: (mode: "hours" | "days" | "month" | "year") => {
     set((state) => ({ ...state, buildingFiveMode: mode }));
   },
+  setBuildingFive: async (mode) => {
+    if (mode === "hours") {
+      try {
+        const data = await fetchData("http://localhost:8080/api/minute-level");
+        const hourlyData = processHourlyData(data);
+        set((state) => ({ buildFive: hourlyData }));
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    if (mode === "days") {
+      try {
+        const data = await fetchData("http://localhost:8080/api/daily-level");
+        const dailyData = processDailyData(data);
+        set((state) => ({ buildFive: dailyData }));
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    if (mode === "month") {
+      try {
+        const data = await fetchData(
+          "http://localhost:8080/api/month-level?daily=true"
+        );
+        const monthlyData = processMonthlyData(data);
+        set((state) => ({ buildFive: monthlyData }));
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+    if (mode === "year") {
+      try {
+        const data = await fetchData("http://localhost:8080/api/month-level");
+        const yearlyData = processYearlyData(data);
+        set((state) => ({ buildFive: yearlyData }));
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+  },
+  buildSix: [],
   buildingSixMode: "hours",
   setBuildingSixMode: (mode: "hours" | "days" | "month" | "year") => {
+    set((state) => ({ ...state, buildingSixMode: mode }));
+  },
+  setBuildingSix: (mode: "hours" | "days" | "month" | "year") => {
     set((state) => ({ ...state, buildingSixMode: mode }));
   },
 }));
