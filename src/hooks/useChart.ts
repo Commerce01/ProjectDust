@@ -90,7 +90,9 @@ const useChart = create<ChartStoreAction>((set, get) => ({
   setBuildingFive: async (mode) => {
     if (mode === "hours") {
       try {
-        const data = await fetchData("http://localhost:8080/api/minute-level");
+        const data = await fetchData(
+          "http://43.228.85.26:8080/api/minute-level"
+        );
         const hourlyData = processHourlyData(data);
         set((state) => ({ buildFive: hourlyData }));
       } catch (error) {
@@ -100,7 +102,9 @@ const useChart = create<ChartStoreAction>((set, get) => ({
 
     if (mode === "days") {
       try {
-        const data = await fetchData("http://localhost:8080/api/daily-level");
+        const data = await fetchData(
+          "http://43.228.85.26:8080/api/daily-level"
+        );
         const dailyData = processDailyData(data);
         set((state) => ({ buildFive: dailyData }));
       } catch (error) {
@@ -111,7 +115,7 @@ const useChart = create<ChartStoreAction>((set, get) => ({
     if (mode === "month") {
       try {
         const data = await fetchData(
-          "http://localhost:8080/api/month-level?daily=true"
+          "http://43.228.85.26:8080/api/month-level?daily=true"
         );
         const monthlyData = processMonthlyData(data);
         set((state) => ({ buildFive: monthlyData }));
@@ -121,7 +125,9 @@ const useChart = create<ChartStoreAction>((set, get) => ({
     }
     if (mode === "year") {
       try {
-        const data = await fetchData("http://localhost:8080/api/month-level");
+        const data = await fetchData(
+          "http://43.228.85.26:8080/api/month-level"
+        );
         const yearlyData = processYearlyData(data);
         set((state) => ({ buildFive: yearlyData }));
       } catch (error) {
