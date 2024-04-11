@@ -3,29 +3,35 @@ import React from "react";
 import Image from "next/image";
 
 import AccordionSub from "../Subcomponent/AccordionSub";
-
-import TableRealtime5 from "../Subcomponent/TableRealtime5";
-import TableRealtime6 from "../Subcomponent/TableRealtime6";
+import CardRealTime from "../Subcomponent/CardRealTime";
 
 function Home() {
   return (
     <div className="container">
-      <div className="flex justify-center items-center"></div>
-      <div>
-        <div className="flex justify-center items-center">
-          <Image src="/assets/bn2.png" alt="bn2" width={3840} height={500} />
-          <div className="absolute justify-center items-center">
-            <h1 className="text-3xl font-bold  drop-shadow-xl text-white">
-              ฝุ่น อันตรายกว่าที่คุณคิด
-            </h1>
-          </div>
-        </div>
+      <div className=" flex justify-center items-center text-4xl font-blod py-2">
+        What💀the..Dust?
       </div>
-      <div className=" py-5">
-        <TableRealtime5 />
+      <p className=" flex justify-center items-center text-2xl py-2">
+        ช่วงนี้ฝุ่นเยอะ💨
+      </p>
+      <p className=" flex justify-center items-center text-2xl ">
+        รักษาสุขภาพกันด้วยนะ😷
+      </p>
+      <p className=" flex justify-center items-center text-2xl py-2 ">
+        #ที่นี่(มอ)รังสิต🏫
+      </p>
+      <div className="flex justify-center items-center ">
+        {/* <Image
+          src="/assets/Thailand-Index-Color-Bar-Air-Quality-Index-scaled.jpg"
+          alt="bn2"
+          width={1300}
+          height={50}
+        /> */}
+
+        <div className="absolute justify-center items-center"></div>
       </div>
-      <div>
-        <TableRealtime6 />
+      <div className="flex justify-center items-center  ">
+        <CardRealTime />
       </div>
       <div>
         <AccordionSub />

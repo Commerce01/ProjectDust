@@ -69,7 +69,7 @@ const AQIS = [
 
 function TableAqiInformation() {
   return (
-    <Table>
+    <Table className="mx-auto">
       <TableCaption>
         เกณฑ์ของดัชนีคุณภาพอากาศตามมาตรฐานของประเทศไทย (TH AQI)
       </TableCaption>

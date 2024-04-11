@@ -1,15 +1,7 @@
 "use client";
 
 import React, { ReactNode } from "react";
-import { BiCaretRight, BiChevronDown } from "react-icons/bi";
 
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "../ui/navigation-menu";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
