@@ -1,7 +1,6 @@
 "use client";
-
-import useChartTem from "@/hooks/useChartTem";
-import React from "react";
+import useChart from "@/hooks/useChart";
+import React, { useEffect, useState } from "react";
 import {
   XAxis,
   YAxis,
@@ -39,66 +38,72 @@ import {
 // ];
 
 export default function PureComponent() {
-  const { buildSix, setBuildingSixMode, setBuildingSix } = useChartTem();
+  const { buildFive, setBuildingFiveMode, setBuildingFive } = useChart();
   // static demoUrl = "https://codesandbox.io/s/synchronized-area-chart-kpg1s";
 
   function calDays() {
-    buildSix.filter((b) => Number(b.name.split(" ")[0]) % 3);
+    buildFive.filter((b) => Number(b.name.split(" ")[0]) % 3);
   }
+
+  useEffect(() => {
+    setBuildingFive("hours");
+  }, []);
   return (
-    <div style={{ width: "100%" }}>
-      <div className=" flex justify-center items-center ">
-        <div className="px-2">
+    <>
+      <div style={{ width: "100%" }}>
+        <div className="flex items-center justify-center ">
+          <div className="px-2">
+            <button
+              className="px-4 py-2 text-black uppercase bg-blue-400 border-white border-solid rounded-full border-3 texl-xl -tracking-widest hover: hover:text-white"
+              onClick={() => {
+                setBuildingFiveMode("hours");
+                setBuildingFive("hours");
+              }}
+            >
+              รายชั่วโมง
+            </button>
+          </div>
+          <div className="px-2">
+            <button
+              className="px-5 py-2 text-black uppercase bg-blue-500 border-white border-solid rounded-full border-3 texl-xl -tracking-widest hover: hover:text-white"
+              onClick={() => {
+                setBuildingFiveMode("days");
+                setBuildingFive("days");
+              }}
+            >
+              เมื่อวาน
+            </button>
+          </div>
+          <div className="px-2">
+            <button
+              className="px-3 py-2 text-black uppercase bg-blue-600 border-white border-solid rounded-full border-3 texl-xl -tracking-widest hover: hover:text-white"
+              onClick={() => {
+                setBuildingFiveMode("month");
+                setBuildingFive("month");
+              }}
+            >
+              รายเดือน
+            </button>
+          </div>
+          <div className="px-2"></div>
           <button
-            className=" border-solid border-white border-3 text-black px-4 py-2 texl-xl uppercase -tracking-widest hover: bg-blue-400 hover:text-white rounded-full"
+            className="px-5 py-2 text-black uppercase bg-blue-700 border-white border-solid rounded-full border-3 texl-xl -tracking-widest hover: hover:text-white"
             onClick={() => {
-              setBuildingSixMode("hours");
-              setBuildingSix("hours");
+              setBuildingFiveMode("year");
+              setBuildingFive("year");
             }}
           >
-            Hour
-          </button>
-        </div>
-        <div className="px-2">
-          <button
-            className=" border-solid border-white border-3 text-black px-5 py-2 texl-xl uppercase -tracking-widest hover: bg-blue-500 hover:text-white rounded-full"
-            onClick={() => {
-              setBuildingSixMode("days");
-              setBuildingSix("days");
-            }}
-          >
-            Days
-          </button>
-        </div>
-        <div className="px-2">
-          <button
-            className=" border-solid border-white border-3 text-black px-3 py-2 texl-xl uppercase -tracking-widest hover: bg-blue-600 hover:text-white rounded-full"
-            onClick={() => {
-              setBuildingSixMode("month");
-              setBuildingSix("month");
-            }}
-          >
-            Month
-          </button>
-        </div>
-        <div className="px-2">
-          <button
-            className=" border-solid border-white border-3 text-black px-5 py-2 texl-xl uppercase -tracking-widest hover: bg-blue-700 hover:text-white rounded-full"
-            onClick={() => {
-              setBuildingSixMode("year");
-              setBuildingSix("year");
-            }}
-          >
-            Year
+            รายปี
           </button>
         </div>
       </div>
       <h4>PM2.5</h4>
+
       <ResponsiveContainer width="100%" height={200} className="text-xs">
         <LineChart
           width={500}
           height={200}
-          data={buildSix}
+          data={buildFive}
           syncId="anyId"
           margin={{
             top: 10,
@@ -114,13 +119,14 @@ export default function PureComponent() {
           <Line dataKey="pm25" fill="#FF0000" />
         </LineChart>
       </ResponsiveContainer>
+
       <p>Co2</p>
 
       <ResponsiveContainer width="100%" height={200} className="text-xs">
         <LineChart
           width={500}
           height={200}
-          data={buildSix}
+          data={buildFive}
           syncId="anyId"
           margin={{
             top: 10,
@@ -136,6 +142,6 @@ export default function PureComponent() {
           <Line dataKey="co2" fill="#00FF00" />
         </LineChart>
       </ResponsiveContainer>
-    </div>
+    </>
   );
 }

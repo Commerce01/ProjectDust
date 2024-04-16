@@ -60,7 +60,7 @@ export default function PureComponent() {
                 setBuildingFive("hours");
               }}
             >
-              Hour
+              รายชั่วโมง
             </button>
           </div>
           <div className="px-2">
@@ -71,7 +71,7 @@ export default function PureComponent() {
                 setBuildingFive("days");
               }}
             >
-              Days
+              เมื่อวาน
             </button>
           </div>
           <div className="px-2">
@@ -82,7 +82,7 @@ export default function PureComponent() {
                 setBuildingFive("month");
               }}
             >
-              Month
+              รายเดือน
             </button>
           </div>
           <div className="px-2"></div>
@@ -93,7 +93,7 @@ export default function PureComponent() {
               setBuildingFive("year");
             }}
           >
-            Year
+            รายปี
           </button>
         </div>
       </div>

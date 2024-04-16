@@ -46,6 +46,7 @@ const arr = [
 const arr2 = [
   { name: "อาคาร 5", desc: "ประวัติค่าฝุ่น", link: "building-5" },
   { name: "อาคาร 6", desc: "ยังไม่เปิดให้บริการ", link: "building-6" },
+  { name: "ตารางค่าฝุ่น", desc: "ค่าฝุ่นรายปี", link: "previous" },
 ];
 function Navbar() {
   return (
