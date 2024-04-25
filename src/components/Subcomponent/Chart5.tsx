@@ -71,7 +71,7 @@ export default function PureComponent() {
                 setBuildingFive("days");
               }}
             >
-              เมื่อวาน
+              รายวัน
             </button>
           </div>
           <div className="px-2">
