@@ -9,6 +9,9 @@ type Data = {
 type ChartStoreAction = {
   buildFive: Data[];
   buildingFiveMode: "hours" | "days" | "month" | "year";
+  setBuildingFiveOptMonth: (month: number) => void;
+  setBuildingFiveOptYear: (year: number) => void;
+  setBuildingFiveOptDate: (date: string) => void;
   setBuildingFiveMode: (mode: "hours" | "days" | "month" | "year") => void;
   setBuildingFive: (mode: "hours" | "days" | "month" | "year") => void;
   buildSix: Data[];
@@ -96,6 +99,7 @@ const useChart = create<ChartStoreAction>((set, get) => ({
         const hourlyData = processHourlyData(data);
         set((state) => ({ buildFive: hourlyData }));
       } catch (error) {
+        set((state) => ({ buildFive: [] }));
         console.error("Error fetching data:", error);
       }
     }
@@ -108,6 +112,7 @@ const useChart = create<ChartStoreAction>((set, get) => ({
         const dailyData = processDailyData(data);
         set((state) => ({ buildFive: dailyData }));
       } catch (error) {
+        set((state) => ({ buildFive: [] }));
         console.error("Error fetching data:", error);
       }
     }
@@ -120,6 +125,7 @@ const useChart = create<ChartStoreAction>((set, get) => ({
         const monthlyData = processMonthlyData(data);
         set((state) => ({ buildFive: monthlyData }));
       } catch (error) {
+        set((state) => ({ buildFive: [] }));
         console.error("Error fetching data:", error);
       }
     }
@@ -131,8 +137,45 @@ const useChart = create<ChartStoreAction>((set, get) => ({
         const yearlyData = processYearlyData(data);
         set((state) => ({ buildFive: yearlyData }));
       } catch (error) {
+        set((state) => ({ buildFive: [] }));
         console.error("Error fetching data:", error);
       }
+    }
+  },
+  setBuildingFiveOptDate: async (date) => {
+    try {
+      const data = await fetchData(
+        "http://43.228.85.26:8080/api/daily-level?date=" + date
+      );
+      const dailyData = processDailyData(data);
+      set((state) => ({ buildFive: dailyData }));
+    } catch (error) {
+      set((state) => ({ buildFive: [] }));
+      console.error("Error fetching data:", error);
+    }
+  },
+  setBuildingFiveOptMonth: async (month) => {
+    try {
+      const data = await fetchData(
+        "http://43.228.85.26:8080/api/month-level?month=" + month
+      );
+      const monthlyData = processMonthlyData(data);
+      set((state) => ({ buildFive: monthlyData }));
+    } catch (error) {
+      set((state) => ({ buildFive: [] }));
+      console.error("Error fetching data:", error);
+    }
+  },
+  setBuildingFiveOptYear: async (year) => {
+    try {
+      const data = await fetchData(
+        "http://43.228.85.26:8080/api/month-level?year=" + year
+      );
+      const monthlyData = processMonthlyData(data);
+      set((state) => ({ buildFive: monthlyData }));
+    } catch (error) {
+      set((state) => ({ buildFive: [] }));
+      console.error("Error fetching data:", error);
     }
   },
   buildSix: [],

@@ -27,8 +27,6 @@ function Home() {
           width={1300}
           height={50}
         /> */}
-
-        <div className="absolute justify-center items-center"></div>
       </div>
       <div className="flex justify-center items-center  ">
         <CardRealTime />

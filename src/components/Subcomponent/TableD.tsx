@@ -18,8 +18,8 @@ const years = [
 
     year2567: (
       <a
-        href="https://docs.google.com/spreadsheets/d/1PVcMxs6_gKcVHTug_SEXC6fXzt3fwzxgjzIeU7Z-vbw/edit?usp=sharing"
-        target="_blank"
+      // href=""
+      // target="_blank"
       >
         <button className="text-2xl text-green-600">
           <SiGooglesheets />
@@ -64,10 +64,10 @@ const years = [
   },
 ];
 
-export function TableH() {
+export function TableD() {
   return (
     <Table>
-      <TableCaption>ค่าฝุ่นรายปี</TableCaption>
+      <TableCaption>ค่าฝุ่นรายวัน</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead className="w-[500px]">สถานที่</TableHead>

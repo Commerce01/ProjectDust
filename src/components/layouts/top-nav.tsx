@@ -3,14 +3,16 @@ import {
   NavigationMenu,
   NavigationMenuList,
   NavigationMenuItem,
-  NavigationMenuTrigger,
-  NavigationMenuContent,
-  navigationMenuTriggerStyle,
+  // NavigationMenuTrigger,
+  // NavigationMenuContent,
+  // navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { NavigationMenuLink } from "@radix-ui/react-navigation-menu";
 import Link from "next/link";
 import React from "react";
 import { BiCaretRight } from "react-icons/bi";
+import TimePicker from "../Subcomponent/Time";
+import CustomData from "../Subcomponent/Date";
 
 function TopNav() {
   return (
@@ -25,7 +27,16 @@ function TopNav() {
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <Link href="/building-5">📍อาคารวิษณุรัตน์</Link>
+                  <div className="text-xl">{/* <TimePicker /> */}</div>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <p className="text-xl text-red-700"> | </p>
+                </NavigationMenuItem>
+                <NavigationMenuItem asChild>
+                  {/* <Link href="/building-5">📍อาคารวิษณุรัตน์</Link> */}
+                  <div className="text-xl">
+                    <CustomData />
+                  </div>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>

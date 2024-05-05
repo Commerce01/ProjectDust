@@ -1,5 +1,6 @@
 "use client";
 import useChart from "@/hooks/useChart";
+import { cn } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
 import {
   XAxis,
@@ -9,6 +10,8 @@ import {
   LineChart,
   Line,
 } from "recharts";
+import { DatePicker } from "./Datepicker5";
+import { ComboboxMonth5 } from "./Combomonth5";
 
 // const data = [
 //   {
@@ -38,7 +41,13 @@ import {
 // ];
 
 export default function PureComponent() {
-  const { buildFive, setBuildingFiveMode, setBuildingFive } = useChart();
+  const {
+    buildFive,
+    buildingFiveMode,
+    setBuildingFiveMode,
+    setBuildingFive,
+    setBuildingFiveOptDate,
+  } = useChart();
   // static demoUrl = "https://codesandbox.io/s/synchronized-area-chart-kpg1s";
 
   function calDays() {
@@ -48,13 +57,17 @@ export default function PureComponent() {
   useEffect(() => {
     setBuildingFive("hours");
   }, []);
+
   return (
     <>
       <div style={{ width: "100%" }}>
         <div className="flex items-center justify-center ">
           <div className="px-2">
             <button
-              className="px-4 py-2 text-black uppercase bg-red-400 border-white border-solid rounded-full border-3 texl-xl -tracking-widest hover: hover:text-white"
+              className={cn(
+                "px-4 py-2 text-black uppercase bg-red-500 border-white border-solid rounded-full border-3 texl-xl -tracking-widest hover: hover:text-white",
+                buildingFiveMode === "hours" && "bg-red-600"
+              )}
               onClick={() => {
                 setBuildingFiveMode("hours");
                 setBuildingFive("hours");
@@ -65,7 +78,10 @@ export default function PureComponent() {
           </div>
           <div className="px-2">
             <button
-              className="px-5 py-2 text-black uppercase bg-red-500 border-white border-solid rounded-full border-3 texl-xl -tracking-widest hover: hover:text-white"
+              className={cn(
+                "px-5 py-2 text-black uppercase bg-red-500 border-white border-solid rounded-full border-3 texl-xl -tracking-widest hover: hover:text-white",
+                buildingFiveMode === "days" && "bg-red-600"
+              )}
               onClick={() => {
                 setBuildingFiveMode("days");
                 setBuildingFive("days");
@@ -76,7 +92,10 @@ export default function PureComponent() {
           </div>
           <div className="px-2">
             <button
-              className="px-3 py-2 text-black uppercase bg-red-600 border-white border-solid rounded-full border-3 texl-xl -tracking-widest hover: hover:text-white"
+              className={cn(
+                "px-3 py-2 text-black uppercase bg-red-500 border-white border-solid rounded-full border-3 texl-xl -tracking-widest hover: hover:text-white",
+                buildingFiveMode === "month" && "bg-red-600"
+              )}
               onClick={() => {
                 setBuildingFiveMode("month");
                 setBuildingFive("month");
@@ -87,7 +106,10 @@ export default function PureComponent() {
           </div>
           <div className="px-2"></div>
           <button
-            className="px-5 py-2 text-black uppercase bg-red-700 border-white border-solid rounded-full border-3 texl-xl -tracking-widest hover: hover:text-white"
+            className={cn(
+              "px-5 py-2 text-black uppercase bg-red-500 border-white border-solid rounded-full border-3 texl-xl -tracking-widest hover: hover:text-white",
+              buildingFiveMode === "year" && "bg-red-600"
+            )}
             onClick={() => {
               setBuildingFiveMode("year");
               setBuildingFive("year");
@@ -97,51 +119,69 @@ export default function PureComponent() {
           </button>
         </div>
       </div>
-      <h4>PM2.5</h4>
+      {buildFive.length === 0 ? (
+        <div>
+          {buildingFiveMode === "days" && <DatePicker />}
+          {buildingFiveMode === "month" && <ComboboxMonth5 />}
+          <h4>PM2.5</h4>
+          <div className="flex items-center justify-center w-full h-[200px]">
+            ไม่พบข้อมูล
+          </div>
+          <h4>CO2</h4>
+          <div className="flex items-center justify-center w-full h-[200px]">
+            ไม่พบข้อมูล
+          </div>
+        </div>
+      ) : (
+        <div>
+          {buildingFiveMode === "days" && <DatePicker />}
+          {buildingFiveMode === "month" && <ComboboxMonth5 />}
+          <h4>PM2.5</h4>
+          <ResponsiveContainer width="100%" height={200} className="text-xs">
+            <LineChart
+              width={500}
+              height={200}
+              data={buildFive}
+              syncId="anyId"
+              margin={{
+                top: 10,
+                right: 30,
+                left: 0,
+                bottom: 0,
+              }}
+            >
+              {/* <CartesianGrid strokeDasharray="3 3" /> */}
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Line dataKey="pm25" fill="#FF0000" />
+            </LineChart>
+          </ResponsiveContainer>
 
-      <ResponsiveContainer width="100%" height={200} className="text-xs">
-        <LineChart
-          width={500}
-          height={200}
-          data={buildFive}
-          syncId="anyId"
-          margin={{
-            top: 10,
-            right: 30,
-            left: 0,
-            bottom: 0,
-          }}
-        >
-          {/* <CartesianGrid strokeDasharray="3 3" /> */}
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Line dataKey="pm25" fill="#FF0000" />
-        </LineChart>
-      </ResponsiveContainer>
+          <p>Co2</p>
 
-      <p>Co2</p>
-
-      <ResponsiveContainer width="100%" height={200} className="text-xs">
-        <LineChart
-          width={500}
-          height={200}
-          data={buildFive}
-          syncId="anyId"
-          margin={{
-            top: 10,
-            right: 30,
-            left: 0,
-            bottom: 0,
-          }}
-        >
-          {/* <CartesianGrid strokeDasharray="3 3" /> */}
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Line dataKey="co2" fill="#00FF00" />
-        </LineChart>
-      </ResponsiveContainer>
+          <ResponsiveContainer width="100%" height={200} className="text-xs">
+            <LineChart
+              width={500}
+              height={200}
+              data={buildFive}
+              syncId="anyId"
+              margin={{
+                top: 10,
+                right: 30,
+                left: 0,
+                bottom: 0,
+              }}
+            >
+              {/* <CartesianGrid strokeDasharray="3 3" /> */}
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Line dataKey="co2" fill="#00FF00" />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      )}
     </>
   );
 }
