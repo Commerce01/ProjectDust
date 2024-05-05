@@ -171,7 +171,7 @@ const useChart = create<ChartStoreAction>((set, get) => ({
       const data = await fetchData(
         "http://43.228.85.26:8080/api/month-level?year=" + year
       );
-      const monthlyData = processMonthlyData(data);
+      const monthlyData = processYearlyData(data);
       set((state) => ({ buildFive: monthlyData }));
     } catch (error) {
       set((state) => ({ buildFive: [] }));

@@ -25,46 +25,17 @@ import {
 import useChart from "@/hooks/useChart";
 
 const FormSchema = z.object({
-  month: z.string(),
+  year: z.string(),
 });
 
-function findMonth(month: number) {
-  switch (month) {
-    case 1:
-      return "มกราคม";
-    case 2:
-      return "กุมภาพันธ์";
-    case 3:
-      return "มีนาคม";
-    case 4:
-      return "เมษายน";
-    case 5:
-      return "พฤษภาคม";
-    case 6:
-      return "มิถุนายน";
-    case 7:
-      return "กรกฎาคม";
-    case 8:
-      return "สิงหาคม";
-    case 9:
-      return "กันยายน";
-    case 10:
-      return "ตุลาคม";
-    case 11:
-      return "พฤศจิกายน";
-    case 12:
-      return "ธันวาคม";
-  }
-}
-
-export function ComboboxMonth5() {
-  const { setBuildingFiveOptMonth } = useChart();
+export function ComboboxYear5() {
+  const { setBuildingFiveOptYear } = useChart();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    setBuildingFiveOptMonth(Number(data.month));
+    setBuildingFiveOptYear(Number(data.year));
   }
 
   return (
@@ -75,21 +46,18 @@ export function ComboboxMonth5() {
       >
         <FormField
           control={form.control}
-          name="month"
+          name="year"
           render={({ field }) => (
             <FormItem>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="เลือกเดือน" />
+                    <SelectValue placeholder="เลือกปี" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {Array.from({ length: 12 }).map((_, i) => (
-                    <SelectItem key={i} value={String(i + 1)}>
-                      {findMonth(i + 1)}
-                    </SelectItem>
-                  ))}
+                  <SelectItem value="2023">2023</SelectItem>
+                  <SelectItem value="2024">2024</SelectItem>
                 </SelectContent>
               </Select>
 

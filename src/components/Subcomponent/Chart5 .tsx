@@ -12,6 +12,7 @@ import {
 } from "recharts";
 import { DatePicker } from "./Datepicker5";
 import { ComboboxMonth5 } from "./Combomonth5";
+import { ComboboxYear5 } from "./Comboyear5";
 
 // const data = [
 //   {
@@ -121,8 +122,16 @@ export default function PureComponent() {
       </div>
       {buildFive.length === 0 ? (
         <div>
-          {buildingFiveMode === "days" && <DatePicker />}
-          {buildingFiveMode === "month" && <ComboboxMonth5 />}
+          <div
+            className={cn(
+              "p-4 my-2 border rounded space-y-2 text-xs",
+              buildingFiveMode === "hours" && "hidden"
+            )}
+          >
+            <div>ตัวเลือกเพิ่มเติม</div>
+            {buildingFiveMode === "days" && <DatePicker />}
+            {buildingFiveMode === "month" && <ComboboxMonth5 />}
+          </div>
           <h4>PM2.5</h4>
           <div className="flex items-center justify-center w-full h-[200px]">
             ไม่พบข้อมูล
@@ -134,8 +143,17 @@ export default function PureComponent() {
         </div>
       ) : (
         <div>
-          {buildingFiveMode === "days" && <DatePicker />}
-          {buildingFiveMode === "month" && <ComboboxMonth5 />}
+          <div
+            className={cn(
+              "p-4 my-2 border rounded space-y-2 text-xs",
+              buildingFiveMode === "hours" && "hidden"
+            )}
+          >
+            <div>ตัวเลือกเพิ่มเติม</div>
+            {buildingFiveMode === "days" && <DatePicker />}
+            {buildingFiveMode === "month" && <ComboboxMonth5 />}
+            {buildingFiveMode === "year" && <ComboboxYear5 />}
+          </div>
           <h4>PM2.5</h4>
           <ResponsiveContainer width="100%" height={200} className="text-xs">
             <LineChart

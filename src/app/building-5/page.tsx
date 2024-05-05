@@ -1,5 +1,4 @@
-import Chart5 from "@/components/Subcomponent/Chart5";
-
+import Chart5 from "@/components/Subcomponent/Chart5 ";
 import React from "react";
 
 function bd5page() {
