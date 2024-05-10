@@ -11,8 +11,11 @@ import { NavigationMenuLink } from "@radix-ui/react-navigation-menu";
 import Link from "next/link";
 import React from "react";
 import { BiCaretRight } from "react-icons/bi";
-import TimePicker from "../Subcomponent/Time";
 import CustomData from "../Subcomponent/Date";
+// import Clock from "../Subcomponent/Time";
+import dynamic from "next/dynamic";
+
+const Clock = dynamic(() => import("../Subcomponent/Time"));
 
 function TopNav() {
   return (
@@ -27,16 +30,18 @@ function TopNav() {
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <div className="text-xl">{/* <TimePicker /> */}</div>
+                  <div className="text-xl">
+                    <Clock />
+                  </div>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <p className="text-xl text-red-700"> | </p>
                 </NavigationMenuItem>
                 <NavigationMenuItem asChild>
-                  {/* <Link href="/building-5">📍อาคารวิษณุรัตน์</Link> */}
-                  <div className="text-xl">
+                  <Link href="/building-5">📍อาคารวิษณุรัตน์</Link>
+                  {/* <div className="text-xl">
                     <CustomData />
-                  </div>
+                  </div> */}
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>

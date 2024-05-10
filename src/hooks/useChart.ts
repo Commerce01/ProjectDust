@@ -9,9 +9,10 @@ type Data = {
 type ChartStoreAction = {
   buildFive: Data[];
   buildingFiveMode: "hours" | "days" | "month" | "year";
+  setBuildingFiveOptHour: (hour: number) => void;
+  setBuildingFiveOptDate: (date: string) => void;
   setBuildingFiveOptMonth: (month: number) => void;
   setBuildingFiveOptYear: (year: number) => void;
-  setBuildingFiveOptDate: (date: string) => void;
   setBuildingFiveMode: (mode: "hours" | "days" | "month" | "year") => void;
   setBuildingFive: (mode: "hours" | "days" | "month" | "year") => void;
   buildSix: Data[];
@@ -140,6 +141,18 @@ const useChart = create<ChartStoreAction>((set, get) => ({
         set((state) => ({ buildFive: [] }));
         console.error("Error fetching data:", error);
       }
+    }
+  },
+  setBuildingFiveOptHour: async (hour) => {
+    try {
+      const data = await fetchData(
+        "http://43.228.85.26:8080/api/minute-level?hour=" + hour
+      );
+      const hourlyData = processHourlyData(data);
+      set((state) => ({ buildFive: hourlyData }));
+    } catch (error) {
+      set((state) => ({ buildFive: [] }));
+      console.error("Error fetching data:", error);
     }
   },
   setBuildingFiveOptDate: async (date) => {

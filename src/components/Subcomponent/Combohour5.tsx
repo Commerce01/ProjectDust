@@ -25,17 +25,25 @@ import {
 import useChart from "@/hooks/useChart";
 
 const FormSchema = z.object({
-  year: z.string(),
+  hour: z.string(),
 });
 
-export function ComboboxYear5() {
-  const { setBuildingFiveOptYear } = useChart();
+function changeTimeZone(hour: number) {
+  let newHour = hour - 7;
+  if (newHour < 0) {
+    newHour = 24 + newHour;
+  }
+  return newHour;
+}
+
+export function ComboboxHour5() {
+  const { setBuildingFiveOptHour } = useChart();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    setBuildingFiveOptYear(Number(data.year));
+    setBuildingFiveOptHour(Number(data.hour));
   }
 
   return (
@@ -46,19 +54,21 @@ export function ComboboxYear5() {
       >
         <FormField
           control={form.control}
-          name="year"
+          name="hour"
           render={({ field }) => (
             <FormItem>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="เลือกปีที่ต้องการ" />
+                    <SelectValue placeholder="เลือกชั่วโมงที่ต้องการ" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="2022">2022</SelectItem>
-                  <SelectItem value="2023">2023</SelectItem>
-                  <SelectItem value="2024">2024</SelectItem>
+                  {Array.from({ length: 24 }).map((_, i) => (
+                    <SelectItem key={i} value={String(changeTimeZone(i + 1))}>
+                      {i + 1}:00 น.
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
 

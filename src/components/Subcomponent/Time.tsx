@@ -1,18 +1,38 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 
-function TimePicker() {
-  const [time, setTime] = useState(new Date());
+const Clock: React.FC = () => {
+  const [time, setTime] = useState<Date>(new Date());
 
   useEffect(() => {
-    setInterval(() => setTime(new Date()), 1000);
+    const intervalId = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
-  return (
-    <div>
-      <p>{time.toLocaleTimeString()}</p>
-    </div>
-  );
-}
+  const formattedTime = time.toLocaleTimeString();
 
-export default TimePicker;
+  return <div>{formattedTime}</div>;
+};
+
+export default Clock;
+
+// import React, { useEffect, useState } from "react";
+
+// function TimePicker() {
+//   const [time, setTime] = useState(new Date());
+
+//   useEffect(() => {
+//     setInterval(() => setTime(new Date()), 1000);
+//   }, []);
+
+//   return (
+//     <div>
+//       <p>{time.toLocaleTimeString()}</p>
+//     </div>
+//   );
+// }
+
+// export default TimePicker;

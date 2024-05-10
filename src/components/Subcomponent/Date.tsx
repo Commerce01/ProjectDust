@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 function CustomData() {
   const [newDate, setNewDate] = useState("");
   useEffect(() => {
-    let todayDate = new Date("May 5 2024"),
+    let todayDate = new Date("May 11 2024"),
       day = "" + todayDate.getDate(),
       month = "" + (todayDate.getMonth() + 1),
       year = todayDate.getFullYear();

@@ -81,7 +81,7 @@ export function ComboboxMonth5() {
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="เลือกเดือน" />
+                    <SelectValue placeholder="เลือกเดือนที่ต้องการ" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
