@@ -44,22 +44,30 @@ async function fetchData(url: string) {
   return await response.json();
 }
 
+// function processHourlyData(data: any[]) {
+//   return data.map((item) => ({
+//     name: item.minute,
+//     pm25: item.pm25Level,
+//     co2: item.co2Level,
+//   }));
+// }
+
 function processHourlyData(data: any[]) {
+  const arr = Array.from({ length: 60 }).map((_, i) => {
+    return {
+      minute: i,
+      pm25Level: undefined,
+      co2Level: undefined,
+    };
+  });
   return data.map((item) => ({
-    name: item.minute,
-    pm25: item.pm25Level,
-    co2: item.co2Level,
+    name:
+      item.minute === arr[item.minute].minute
+        ? item.minute
+        : arr[item.minute].minute,
+    pm25: item ? item.pm25Level : undefined,
+    co2: item ? item.co2Level : undefined,
   }));
-}
-
-function processDailyData(data: any) {
-  const dailyData = data.pm25Level.map((item: any, index: number) => ({
-    name: index * 3 + ":00",
-    pm25: item,
-    co2: data.co2Level[index],
-  }));
-
-  return dailyData;
 }
 
 function processMonthlyData(data: any) {
@@ -110,8 +118,8 @@ const useChart = create<ChartStoreAction>((set, get) => ({
         const data = await fetchData(
           "http://43.228.85.26:8080/api/daily-level"
         );
-        const dailyData = processDailyData(data);
-        set((state) => ({ buildFive: dailyData }));
+
+        set((state) => ({ buildFive: data }));
       } catch (error) {
         set((state) => ({ buildFive: [] }));
         console.error("Error fetching data:", error);
@@ -123,8 +131,8 @@ const useChart = create<ChartStoreAction>((set, get) => ({
         const data = await fetchData(
           "http://43.228.85.26:8080/api/month-level?daily=true"
         );
-        const monthlyData = processMonthlyData(data);
-        set((state) => ({ buildFive: monthlyData }));
+
+        set((state) => ({ buildFive: data }));
       } catch (error) {
         set((state) => ({ buildFive: [] }));
         console.error("Error fetching data:", error);
@@ -135,8 +143,8 @@ const useChart = create<ChartStoreAction>((set, get) => ({
         const data = await fetchData(
           "http://43.228.85.26:8080/api/month-level"
         );
-        const yearlyData = processYearlyData(data);
-        set((state) => ({ buildFive: yearlyData }));
+
+        set((state) => ({ buildFive: data }));
       } catch (error) {
         set((state) => ({ buildFive: [] }));
         console.error("Error fetching data:", error);
@@ -160,8 +168,8 @@ const useChart = create<ChartStoreAction>((set, get) => ({
       const data = await fetchData(
         "http://43.228.85.26:8080/api/daily-level?date=" + date
       );
-      const dailyData = processDailyData(data);
-      set((state) => ({ buildFive: dailyData }));
+
+      set((state) => ({ buildFive: data }));
     } catch (error) {
       set((state) => ({ buildFive: [] }));
       console.error("Error fetching data:", error);
@@ -172,8 +180,8 @@ const useChart = create<ChartStoreAction>((set, get) => ({
       const data = await fetchData(
         "http://43.228.85.26:8080/api/month-level?month=" + month
       );
-      const monthlyData = processMonthlyData(data);
-      set((state) => ({ buildFive: monthlyData }));
+
+      set((state) => ({ buildFive: data }));
     } catch (error) {
       set((state) => ({ buildFive: [] }));
       console.error("Error fetching data:", error);

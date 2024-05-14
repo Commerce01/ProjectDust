@@ -15,7 +15,26 @@ const years = [
   {
     building: "อาคารวิษณุรัตน์",
     Status: "เปิดให้บริการ🟢",
-
+    year2565: (
+      <a
+      // href=""
+      // target="_blank"
+      >
+        <button className="text-2xl">
+          <SiGooglesheets />
+        </button>
+      </a>
+    ),
+    year2566: (
+      <a
+      // href=""
+      // target="_blank"
+      >
+        <button className="text-2xl">
+          <SiGooglesheets />
+        </button>
+      </a>
+    ),
     year2567: (
       <a
         href="https://docs.google.com/spreadsheets/d/1PVcMxs6_gKcVHTug_SEXC6fXzt3fwzxgjzIeU7Z-vbw/edit?usp=sharing"
@@ -38,9 +57,28 @@ const years = [
     ),
   },
   {
-    building: "อาคารพิฆเนศ Studdent Center",
+    building: "อาคารพิฆเนศ Student Center",
     Status: "ยังไม่เปิดให้บริการ🔴",
-
+    year2565: (
+      <a
+      // href=""
+      // target="_blank"
+      >
+        <button className="text-2xl">
+          <SiGooglesheets />
+        </button>
+      </a>
+    ),
+    year2566: (
+      <a
+      // href=""
+      // target="_blank"
+      >
+        <button className="text-2xl">
+          <SiGooglesheets />
+        </button>
+      </a>
+    ),
     year2567: (
       <a
       // href=""
@@ -72,7 +110,8 @@ export function TableH() {
         <TableRow>
           <TableHead className="w-[500px]">สถานที่</TableHead>
           <TableHead>สถานะ</TableHead>
-
+          <TableHead className="text-right">2565</TableHead>
+          <TableHead className="text-right">2566</TableHead>
           <TableHead className="text-right">2567</TableHead>
           <TableHead className="text-right">2568</TableHead>
         </TableRow>
@@ -82,6 +121,8 @@ export function TableH() {
           <TableRow key={invoice.building}>
             <TableCell className="font-medium">{invoice.building}</TableCell>
             <TableCell>{invoice.Status}</TableCell>
+            <TableCell className="text-right">{invoice.year2565}</TableCell>
+            <TableCell className="text-right">{invoice.year2566}</TableCell>
             <TableCell className="text-right">{invoice.year2567}</TableCell>
             <TableCell className="text-right">{invoice.year2568}</TableCell>
           </TableRow>

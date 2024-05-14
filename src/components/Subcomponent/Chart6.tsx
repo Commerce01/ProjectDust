@@ -13,6 +13,7 @@ import {
 import { DatePicker } from "./Datepicker5";
 import { ComboboxMonth5 } from "./Combomonth5";
 import { ComboboxYear5 } from "./Comboyear5";
+import { ComboboxHour5 } from "./Combohour5";
 
 // const data = [
 //   {
@@ -41,7 +42,7 @@ import { ComboboxYear5 } from "./Comboyear5";
 //   },
 // ];
 
-export default function Chart5() {
+export default function PureComponent() {
   const {
     buildFive,
     buildingFiveMode,
@@ -67,7 +68,7 @@ export default function Chart5() {
             <button
               className={cn(
                 "px-4 py-2 text-black uppercase bg-blue-600 border-white border-solid rounded-full border-3 texl-xl -tracking-widest hover: hover:text-white",
-                buildingFiveMode === "hours" && " bg-green-600"
+                buildingFiveMode === "hours" && "bg-purple-600"
               )}
               onClick={() => {
                 setBuildingFiveMode("hours");
@@ -81,7 +82,7 @@ export default function Chart5() {
             <button
               className={cn(
                 "px-5 py-2 text-black uppercase bg-blue-600 border-white border-solid rounded-full border-3 texl-xl -tracking-widest hover: hover:text-white",
-                buildingFiveMode === "days" && "bg-green-600"
+                buildingFiveMode === "days" && "bg-purple-600"
               )}
               onClick={() => {
                 setBuildingFiveMode("days");
@@ -95,7 +96,7 @@ export default function Chart5() {
             <button
               className={cn(
                 "px-3 py-2 text-black uppercase bg-blue-600 border-white border-solid rounded-full border-3 texl-xl -tracking-widest hover: hover:text-white",
-                buildingFiveMode === "month" && "bg-green-600"
+                buildingFiveMode === "month" && "bg-purple-600"
               )}
               onClick={() => {
                 setBuildingFiveMode("month");
@@ -109,7 +110,7 @@ export default function Chart5() {
           <button
             className={cn(
               "px-5 py-2 text-black uppercase bg-blue-600 border-white border-solid rounded-full border-3 texl-xl -tracking-widest hover: hover:text-white",
-              buildingFiveMode === "year" && "bg-green-600"
+              buildingFiveMode === "year" && "bg-purple-600"
             )}
             onClick={() => {
               setBuildingFiveMode("year");
@@ -124,11 +125,12 @@ export default function Chart5() {
         <div>
           <div
             className={cn(
-              "p-4 my-2 border rounded space-y-2 text-xs",
-              buildingFiveMode === "hours" && "hidden"
+              "p-4 my-2 border rounded space-y-2 text-xs"
+              // buildingFiveMode === "hours" && "hidden"
             )}
           >
             <div>ตัวเลือกเพิ่มเติม</div>
+            {buildingFiveMode === "hours" && <ComboboxHour5 />}
             {buildingFiveMode === "days" && <DatePicker />}
             {buildingFiveMode === "month" && <ComboboxMonth5 />}
             {buildingFiveMode === "year" && <ComboboxYear5 />}
@@ -146,11 +148,12 @@ export default function Chart5() {
         <div>
           <div
             className={cn(
-              "p-4 my-2 border rounded space-y-2 text-xs",
-              buildingFiveMode === "hours" && "hidden"
+              "p-4 my-2 border rounded space-y-2 text-xs"
+              // buildingFiveMode === "hours" && "hidden"
             )}
           >
             <div>ตัวเลือกเพิ่มเติม</div>
+            {buildingFiveMode === "hours" && <ComboboxHour5 />}
             {buildingFiveMode === "days" && <DatePicker />}
             {buildingFiveMode === "month" && <ComboboxMonth5 />}
             {buildingFiveMode === "year" && <ComboboxYear5 />}
