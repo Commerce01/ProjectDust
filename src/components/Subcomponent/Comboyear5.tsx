@@ -66,7 +66,7 @@ export function ComboboxYear5() {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit">ตรวจสอบ</Button>
       </form>
     </Form>
   );

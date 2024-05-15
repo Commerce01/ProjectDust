@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import AccordionSub from "../Subcomponent/AccordionSub";
 import CardRealTime from "../Subcomponent/CardRealTime";
+import ColorBar from "../Subcomponent/ColorX";
 
 function Home() {
   return (
@@ -20,6 +21,7 @@ function Home() {
       <p className=" flex justify-center items-center text-2xl py-2 ">
         #ที่นี่(มอ)รังสิต🏫
       </p>
+
       <div className="flex justify-center items-center ">
         {/* <Image
           src="/assets/Thailand-Index-Color-Bar-Air-Quality-Index-scaled.jpg"
@@ -30,6 +32,9 @@ function Home() {
       </div>
       <div className="flex justify-center items-center  ">
         <CardRealTime />
+      </div>
+      <div className="flex justify-center items-center ">
+        <ColorBar />
       </div>
       <div>
         <AccordionSub />

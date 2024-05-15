@@ -45,26 +45,34 @@ async function fetchData(url: string) {
 }
 
 // function processHourlyData(data: any[]) {
+//   const arr = Array.from({ length: 60 }).map((_, i) => {
+//     return {
+//       minute: i,
+//       pm25Level: undefined,
+//       co2Level: undefined,
+//     };
+//   });
 //   return data.map((item) => ({
-//     name: item.minute,
-//     pm25: item.pm25Level,
-//     co2: item.co2Level,
+//     name:
+//       item.minute === arr[item.minute].minute
+//         ? item.minute
+//         : arr[item.minute].minute,
+//     pm25: item ? item.pm25Level : undefined,
+//     co2: item ? item.co2Level : undefined,
 //   }));
 // }
 
 function processHourlyData(data: any[]) {
-  const arr = Array.from({ length: 60 }).map((_, i) => {
-    return {
-      minute: i,
-      pm25Level: undefined,
-      co2Level: undefined,
-    };
-  });
+  return data.map((item, index) => ({
+    name: index + 1, // Use index + 1 for minute values from 1-60
+    pm25: item ? item.pm25Level : undefined,
+    co2: item ? item.co2Level : undefined,
+  }));
   return data.map((item) => ({
     name:
-      item.minute === arr[item.minute].minute
+      item.minute === data[item.minute].minute
         ? item.minute
-        : arr[item.minute].minute,
+        : data[item.minute].minute,
     pm25: item ? item.pm25Level : undefined,
     co2: item ? item.co2Level : undefined,
   }));

@@ -268,7 +268,12 @@ const years = [
 export function TableM() {
   return (
     <Table>
-      <TableCaption>ค่าฝุ่นรายเดือน</TableCaption>
+      <TableCaption>
+        ค่าฝุ่นรายเดือน
+        <p className=" text-red-700">
+          *เริ่มเก็บครั้งเเรกช่วงเดือน มกราคม พ.ศ.2567
+        </p>
+      </TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead className="w-[500px]">สถานที่</TableHead>

@@ -16,8 +16,8 @@ function AccordionSub() {
           <AccordionTrigger>การตีความระดับสี</AccordionTrigger>
           <AccordionContent>
             <p>ดัชนีคุณภาพอากาศของประเทศไทย แสดงระดับสี 5 ระดับ </p>
-            <p className="text-blue-400">สีฟ้า = ดี</p>
-            <p className="text-green-500">เขียว = ดีมาก</p>
+            <p className="text-blue-400">สีฟ้า = ดีมาก</p>
+            <p className="text-green-500">เขียว = ดี</p>
             <p className="text-yellow-500">เหลือง = ปานกลาง</p>
             <p className="text-orange-500">สีส้ม = เริ่มมีผลกระทบต่อสุขภาพ</p>
             <p className="text-red-600">สีแดง = มีผลต่อสุขภาพ</p>

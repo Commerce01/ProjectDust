@@ -33,6 +33,7 @@ export default function CardHome() {
         <CardHeader>
           <CardTitle>อาคาร 5</CardTitle>
           <CardDescription>ค่าฝุ่นในขณะนี้ </CardDescription>
+          <CardDescription>เปิดให้บริการ🟢 </CardDescription>
         </CardHeader>
         <CardContent className="flex text-2xl">
           <p>
@@ -71,6 +72,7 @@ export default function CardHome() {
         <CardHeader>
           <CardTitle>อาคาร 6</CardTitle>
           <CardDescription>ค่าฝุ่นในขณะนี้ </CardDescription>
+          <CardDescription>ยังไม่เปิดให้บริการ🔴 </CardDescription>
         </CardHeader>
         <CardContent className="flex text-2xl">
           <p>
@@ -84,7 +86,7 @@ export default function CardHome() {
                 pm25 > 75 && "text-red-500"
               )}
             >
-              {pm25}
+              {/* {pm25} */}
             </span>
           </p>
         </CardContent>
@@ -100,7 +102,7 @@ export default function CardHome() {
                 co2 > 1500 && "text-red-500"
               )}
             >
-              {co2}
+              {/* {co2} */}
             </span>
           </p>
         </CardFooter>

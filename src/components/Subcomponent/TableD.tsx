@@ -61,7 +61,7 @@ const years = [
       // href=""
       // target="_blank"
       >
-        <button className="text-2xl text-green-600">
+        <button className="text-2xl">
           <SiGooglesheets />
         </button>
       </a>
@@ -268,7 +268,12 @@ const years = [
 export function TableD() {
   return (
     <Table>
-      <TableCaption>ค่าฝุ่นรายวัน</TableCaption>
+      <TableCaption>
+        ค่าฝุ่นรายวัน{" "}
+        <p className=" text-red-700">
+          *เริ่มเก็บครั้งเเรกช่วงเดือน เมษายน พ.ศ.2567
+        </p>
+      </TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead className="w-[500px]">สถานที่</TableHead>
