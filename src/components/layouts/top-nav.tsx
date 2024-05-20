@@ -38,10 +38,7 @@ function TopNav() {
                   <p className="text-xl text-red-700"> | </p>
                 </NavigationMenuItem>
                 <NavigationMenuItem asChild>
-                  <Link href="/building-5">📍อาคารวิษณุรัตน์</Link>
-                  {/* <div className="text-xl">
-                    <CustomData />
-                  </div> */}
+                  <Link href="/building-5">อาคารวิษณุรัตน์</Link>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>

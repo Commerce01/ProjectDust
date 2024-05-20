@@ -29,80 +29,80 @@ export default function CardHome() {
 
   return (
     <div className="flex flex-wrap justify-center px-4 sm:px-6 lg:px-8">
-      <Card className="text-3xl w-full sm:w-auto max-w-md lg:max-w-lg xl:max-w-xl mx-4 my-4">
+      <Card className="text-6xl w-full sm:w-auto max-w-md lg:max-w-lg xl:max-w-xl mx-4 my-4">
         <CardHeader>
           <CardTitle>อาคาร 5</CardTitle>
           <CardDescription>ค่าฝุ่นในขณะนี้ </CardDescription>
           <CardDescription>เปิดให้บริการ🟢 </CardDescription>
         </CardHeader>
         <CardContent className="flex text-2xl">
-          <p>
+          <p className="text-4xl">
             Pm2.5 =
             <span
               className={cn(
                 "text-blue-500",
                 pm25 > 15 && "text-green-500",
-                pm25 > 25 && "text-yellow-500",
+                pm25 > 25 && "text-yellow-400",
                 pm25 > 37.6 && "text-orange-500",
                 pm25 > 75 && "text-red-500"
               )}
             >
-              {pm25}
+              <button className="px-2">{pm25}</button>
             </span>
           </p>
         </CardContent>
         <CardFooter className="flex text-2xl">
-          <p>
+          <p className="text-4xl">
             Co2 =
             <span
               className={cn(
                 "text-blue-500",
                 co2 > 401 && "text-green-500",
-                co2 > 701 && "text-yellow-500",
+                co2 > 701 && "text-yellow-400",
                 co2 > 1001 && "text-orange-500",
                 co2 > 1500 && "text-red-500"
               )}
             >
-              {co2}
+              <button className="px-2">{co2}</button>
             </span>
           </p>
         </CardFooter>
       </Card>
-      <Card className="text-3xl w-full sm:w-auto max-w-md lg:max-w-lg xl:max-w-xl mx-4 my-4">
+      <Card className="text-6xl w-full sm:w-auto max-w-md lg:max-w-lg xl:max-w-xl mx-4 my-4">
         <CardHeader>
           <CardTitle>อาคาร 6</CardTitle>
           <CardDescription>ค่าฝุ่นในขณะนี้ </CardDescription>
           <CardDescription>ยังไม่เปิดให้บริการ🔴 </CardDescription>
         </CardHeader>
         <CardContent className="flex text-2xl">
-          <p>
+          <p className="text-4xl">
             Pm2.5 =
             <span
               className={cn(
                 "text-blue-500",
                 pm25 > 15 && "text-green-500",
-                pm25 > 25 && "text-yellow-500",
+                pm25 > 25 && "text-yellow-400",
                 pm25 > 37.6 && "text-orange-500",
                 pm25 > 75 && "text-red-500"
               )}
             >
-              {/* {pm25} */}
+              {/* <button className="px-2">{pm25}</button> */}
             </span>
           </p>
         </CardContent>
         <CardFooter className="flex text-2xl">
-          <p>
+          <p className="text-4xl">
             Co2 =
             <span
               className={cn(
                 "text-blue-500",
-                co2 > 401 && "text-green-500",
-                co2 > 701 && "text-yellow-500",
+                co2 > 401 && "text-green-300",
+                co2 > 701 && "text-yellow-400",
                 co2 > 1001 && "text-orange-500",
                 co2 > 1500 && "text-red-500"
               )}
             >
-              {/* {co2} */}
+              {/* <button className="px-2">{co2}</button> */}
             </span>
           </p>
         </CardFooter>

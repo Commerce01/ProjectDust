@@ -8,7 +8,7 @@ function PreviousPage() {
     <div className="container">
       <div className="flex justify-center items-center ">
         <p className="py-5 px-5  font-bold text-2xl">
-          ตารางประวัติค่าฝุ่น ราย วัน-เดือน-ปี
+          ประวัติค่าฝุ่น ราย วัน-เดือน-ปี
         </p>
       </div>
       <div className="py-5">
