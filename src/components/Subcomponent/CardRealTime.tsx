@@ -53,7 +53,7 @@ export default function CardHome() {
         </CardContent>
         <CardFooter className="flex text-2xl">
           <p className="text-4xl">
-            Co2 =
+            CO₂ =
             <span
               className={cn(
                 "text-blue-500",
@@ -92,7 +92,7 @@ export default function CardHome() {
         </CardContent>
         <CardFooter className="flex text-2xl">
           <p className="text-4xl">
-            Co2 =
+            CO₂ =
             <span
               className={cn(
                 "text-blue-500",

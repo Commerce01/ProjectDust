@@ -9,6 +9,7 @@ import {
   ResponsiveContainer,
   LineChart,
   Line,
+  CartesianGrid,
 } from "recharts";
 import { DatePicker } from "./Datepicker5";
 import { ComboboxMonth5 } from "./Combomonth5";
@@ -139,7 +140,7 @@ export default function PureComponent() {
           <div className="flex items-center justify-center w-full h-[200px]">
             ไม่พบข้อมูล
           </div>
-          <h4>CO2</h4>
+          <h4>CO₂</h4>
           <div className="flex items-center justify-center w-full h-[200px]">
             ไม่พบข้อมูล
           </div>
@@ -159,6 +160,7 @@ export default function PureComponent() {
             {buildingFiveMode === "year" && <ComboboxYear5 />}
           </div>
           <h4>PM2.5</h4>
+          <p>(ug/m³)</p>
           <ResponsiveContainer width="100%" height={200} className="text-xs">
             <LineChart
               width={500}
@@ -179,8 +181,8 @@ export default function PureComponent() {
               <Line dataKey="pm25" fill="#FF0000" />
             </LineChart>
           </ResponsiveContainer>
-
-          <p>Co2</p>
+          <h4>CO₂</h4>
+          <p>(ppm)</p>
 
           <ResponsiveContainer width="100%" height={200} className="text-xs">
             <LineChart

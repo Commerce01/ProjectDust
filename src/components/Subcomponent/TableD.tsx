@@ -269,7 +269,7 @@ export function TableD() {
   return (
     <Table>
       <TableCaption>
-        ค่าฝุ่นรายวัน{" "}
+        ค่าฝุ่นรายเดือน (raw data)
         <p className=" text-red-700">
           *เริ่มเก็บครั้งเเรกช่วงเดือน เมษายน พ.ศ.2567
         </p>
