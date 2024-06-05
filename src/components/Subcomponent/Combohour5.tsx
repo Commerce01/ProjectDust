@@ -29,7 +29,7 @@ const FormSchema = z.object({
 });
 
 function changeTimeZone(hour: number) {
-  let newHour = hour - 7;
+  let newHour = hour;
   if (newHour < 0) {
     newHour = 24 + newHour;
   }
@@ -65,8 +65,8 @@ export function ComboboxHour5() {
                 </FormControl>
                 <SelectContent>
                   {Array.from({ length: 24 }).map((_, i) => (
-                    <SelectItem key={i} value={String(changeTimeZone(i + 1))}>
-                      {i + 1}:00 น.
+                    <SelectItem key={i} value={String(changeTimeZone(i))}>
+                      {i}:00 น.
                     </SelectItem>
                   ))}
                 </SelectContent>

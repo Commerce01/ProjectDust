@@ -15,6 +15,10 @@ import { DatePicker } from "./Datepicker5";
 import { ComboboxMonth5 } from "./Combomonth5";
 import { ComboboxYear5 } from "./Comboyear5";
 import { ComboboxHour5 } from "./Combohour5";
+import Unitminute from "./Unit/minute";
+import Unithour from "./Unit/hour";
+import Unitday from "./Unit/day";
+import Unitmonth from "./Unit/month";
 
 // const data = [
 //   {
@@ -181,9 +185,15 @@ export default function PureComponent() {
               <Line dataKey="pm25" fill="#FF0000" />
             </LineChart>
           </ResponsiveContainer>
+          <div className=" flex justify-end">
+            {buildingFiveMode === "hours" && <Unitminute />}
+            {buildingFiveMode === "days" && <Unithour />}
+            {buildingFiveMode === "month" && <Unitday />}
+            {buildingFiveMode === "year" && <Unitmonth />}
+          </div>
+
           <h4>CO₂</h4>
           <p>(ppm)</p>
-
           <ResponsiveContainer width="100%" height={200} className="text-xs">
             <LineChart
               width={500}
@@ -204,6 +214,12 @@ export default function PureComponent() {
               <Line dataKey="co2" fill="#00FF00" />
             </LineChart>
           </ResponsiveContainer>
+          <div className=" flex justify-end">
+            {buildingFiveMode === "hours" && <Unitminute />}
+            {buildingFiveMode === "days" && <Unithour />}
+            {buildingFiveMode === "month" && <Unitday />}
+            {buildingFiveMode === "year" && <Unitmonth />}
+          </div>
         </div>
       )}
     </>
