@@ -2,7 +2,7 @@
 import React from "react";
 
 function Unitminute() {
-  return <div>หน่วย/นาที</div>;
+  return <div>ช่วงเวลา ( นาทีใน 1 ชั่วโมง)</div>;
 }
 
 export default Unitminute;

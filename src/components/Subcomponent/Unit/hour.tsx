@@ -1,7 +1,7 @@
 import React from "react";
 
 function Unithour() {
-  return <div>หน่วย/ชั่วโมง</div>;
+  return <div>ช่วงเวลา</div>;
 }
 
 export default Unithour;

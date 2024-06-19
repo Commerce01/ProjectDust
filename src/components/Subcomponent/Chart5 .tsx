@@ -185,7 +185,7 @@ export default function PureComponent() {
               <Line dataKey="pm25" fill="#FF0000" />
             </LineChart>
           </ResponsiveContainer>
-          <div className=" flex justify-end">
+          <div className=" flex justify-center">
             {buildingFiveMode === "hours" && <Unitminute />}
             {buildingFiveMode === "days" && <Unithour />}
             {buildingFiveMode === "month" && <Unitday />}
@@ -214,7 +214,7 @@ export default function PureComponent() {
               <Line dataKey="co2" fill="#00FF00" />
             </LineChart>
           </ResponsiveContainer>
-          <div className=" flex justify-end">
+          <div className=" flex justify-center">
             {buildingFiveMode === "hours" && <Unitminute />}
             {buildingFiveMode === "days" && <Unithour />}
             {buildingFiveMode === "month" && <Unitday />}
