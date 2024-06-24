@@ -78,7 +78,7 @@ function TableAqiInformation() {
           <TableHead className="font-medium">ค่าสี</TableHead>
           <TableHead>ความหมาย</TableHead>
           <TableHead>AQI</TableHead>
-          <TableHead>Co2(ppm)</TableHead>
+          <TableHead>CO2(ppm)</TableHead>
           <TableHead>PM2.5 เฉลี่ย 24 ชั่วโมงต่อเนื่อง (μg/m3)</TableHead>
           <TableHead>PM10 เฉลี่ย 24 ชั่วโมงต่อเนื่อง (μg/m3)</TableHead>
           <TableHead>แนวทางการป้องกัน</TableHead>

@@ -192,7 +192,7 @@ export default function PureComponent() {
             {buildingFiveMode === "year" && <Unitmonth />}
           </div>
 
-          <h4>CO₂</h4>
+          <h4>CO2</h4>
           <p>(ppm)</p>
           <ResponsiveContainer width="100%" height={200} className="text-xs">
             <LineChart

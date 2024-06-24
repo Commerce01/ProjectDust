@@ -8,7 +8,7 @@ function CoInformation() {
         <Image src="/assets/co2.jpg" alt="AQI" width={600} height={400} />
       </div>
       <div className="py-5 px-8">
-        <p className="text-2xl font-bold">CO₂ คืออะไร?</p>
+        <p className="text-2xl font-bold">CO2 คืออะไร?</p>
         <p className="text-xl py-3">
           คาร์บอนไดออกไซด์เป็นแก๊สที่มีอยู่ทั่วไปในบรรยากาศ
           แก๊สนี้มีบทบาทสำคัญต่อการดำรงชีพของทั้งมนุษย์ สัตว์ และพืช

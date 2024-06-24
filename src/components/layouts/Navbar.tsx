@@ -32,12 +32,12 @@ const arr = [
     link: "what-is-dust",
   },
   {
-    name: "Pm2.5",
+    name: "PM2.5",
     desc: "คืออะไร ความอันตราย ",
     link: "what-is-pm25",
   },
   {
-    name: "CO₂",
+    name: "CO2",
     desc: "คืออะไร ความอันตราย ",
     link: "what-is-co2",
   },

@@ -184,14 +184,14 @@ export default function PureComponent() {
               <Line dataKey="pm25" fill="#FF0000" />
             </LineChart>
           </ResponsiveContainer>
-          <div className=" flex justify-end">
+          <div className=" flex justify-center">
             {buildingFiveMode === "hours" && <Unitminute />}
             {buildingFiveMode === "days" && <Unithour />}
             {buildingFiveMode === "month" && <Unitday />}
             {buildingFiveMode === "year" && <Unitmonth />}
           </div>
 
-          <h4>CO₂ </h4>
+          <h4>CO2 </h4>
           <p>(ppm)</p>
           <ResponsiveContainer width="100%" height={200} className="text-xs">
             <LineChart
@@ -213,7 +213,7 @@ export default function PureComponent() {
               <Line dataKey="co2" fill="#00FF00" />
             </LineChart>
           </ResponsiveContainer>
-          <div className=" flex justify-end">
+          <div className=" flex justify-center">
             {buildingFiveMode === "hours" && <Unitminute />}
             {buildingFiveMode === "days" && <Unithour />}
             {buildingFiveMode === "month" && <Unitday />}

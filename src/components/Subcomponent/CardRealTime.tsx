@@ -37,7 +37,7 @@ export default function CardHome() {
         </CardHeader>
         <CardContent className="flex text-2xl">
           <p className="text-4xl">
-            Pm2.5 =
+            PM2.5 =
             <span
               className={cn(
                 "text-blue-500",
@@ -53,7 +53,7 @@ export default function CardHome() {
         </CardContent>
         <CardFooter className="flex text-2xl">
           <p className="text-4xl">
-            CO₂ =
+            CO2 =
             <span
               className={cn(
                 "text-blue-500",
@@ -76,7 +76,7 @@ export default function CardHome() {
         </CardHeader>
         <CardContent className="flex text-2xl">
           <p className="text-4xl">
-            Pm2.5 =
+            PM2.5 =
             <span
               className={cn(
                 "text-blue-500",
@@ -92,7 +92,7 @@ export default function CardHome() {
         </CardContent>
         <CardFooter className="flex text-2xl">
           <p className="text-4xl">
-            CO₂ =
+            CO2 =
             <span
               className={cn(
                 "text-blue-500",
